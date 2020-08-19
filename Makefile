@@ -227,8 +227,10 @@ test: $(BUILD_DIRS)
 
 run-server: # @HELP runs go, as defined in ./build/run.sh
 run-server: $(BUILD_DIRS)
+	@echo "Running sever 0.0.0.0:8080 in localhost:8080"
 	@docker run                                                 \
 	    -i                                                      \
+	    --name residential_units                                \
 	    --rm                                                    \
 	    -u $$(id -u):$$(id -g)                                  \
 	    -v $$(pwd):/src                                         \
@@ -238,13 +240,21 @@ run-server: $(BUILD_DIRS)
 	    -v $$(pwd)/.go/cache:/.cache                            \
 	    --env HTTP_PROXY=$(HTTP_PROXY)                          \
 	    --env HTTPS_PROXY=$(HTTPS_PROXY)                        \
+	    -p 8080:8000					    \
 	    $(BUILD_IMAGE)                                          \
 	    /bin/sh -c "                                            \
 	        ARCH=$(ARCH)                                        \
 	        OS=$(OS)                                            \
 	        VERSION=$(VERSION)                                  \
 	        ./build/run.sh $(SRC_DIRS)                          \
-	    "
+	    "                                                       \
+            &
+
+stop-server: # @HELP stop go server
+stop-server:
+	@echo "Destroying server"
+	@docker rm -f residential_units
+
 
 
 $(BUILD_DIRS):

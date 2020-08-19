@@ -25,10 +25,7 @@ export GOFLAGS="-mod=vendor"
 
 TARGETS=$(for d in "$@"; do echo ./$d/...; done)
 
-# go run                                                         \
-#    -installsuffix "static"                                     \
-#    -ldflags "-X $(go list -m)/pkg/version.Version=${VERSION}"  \
-#    ./...
 go run -installsuffix "static" ${TARGETS} \
+   ${GOFLAGS} \
   -ldflags "-X $(go list -m)/pkg/version.Version=${VERSION}" \
   ./...

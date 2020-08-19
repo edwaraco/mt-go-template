@@ -38,6 +38,7 @@ export GO111MODULE=on
 export GOFLAGS="-mod=vendor"
 
 go install                                                      \
+   ${GOFLAGS}                                                   \
     -installsuffix "static"                                     \
     -ldflags "-X $(go list -m)/pkg/version.Version=${VERSION}"  \
     ./...
