@@ -1,32 +1,33 @@
 package application
 
 import (
-	domain "github.com/mitribu/mt-residentials/pkg/residential_units/domain"
+	mt_domain "github.com/mitribu/mt-residentials/pkg/residential_units/domain"
 )
 
 type ResidentialApp interface {
-	Add(Name string) (*domain.Residential, error)
-	AddWorker(id domain.ResidentialId, wn string, wr string) (*domain.Residential, error)
-	List() (*[]domain.Residential, error)
+	Add(name string, createdBy string) (*mt_domain.Residential, error)
+	AddWorker(id mt_domain.ResidentialId, wn string, wr string, updatedby string) (*mt_domain.Residential, error)
+	List() (*[]mt_domain.Residential, error)
 }
 
 type residentialAppImpl struct {
 	ResidentialApp
-	rr domain.ResidentialRepository
+	rr mt_domain.ResidentialRepository
 }
 
-func newResidentialApp(r domain.ResidentialRepository) ResidentialApp {
+func NewResidentialApp(r mt_domain.ResidentialRepository) ResidentialApp {
 	return &residentialAppImpl{rr: r}
 }
 
-func (r *residentialAppImpl) Add(Name string) (*domain.Residential, error) {
+func (r *residentialAppImpl) Add(name string, createdBy string) (*mt_domain.Residential, error) {
+	residential := mt_domain.NewResidential(name, createdBy)
+	return residential, nil
+}
+
+func (r *residentialAppImpl) AddWorker(id mt_domain.ResidentialId, wn string, wr string, updatedby string) (*mt_domain.Residential, error) {
 	return nil, nil
 }
 
-func (r *residentialAppImpl) AddWorker(id domain.ResidentialId, wn string, wr string) (*domain.Residential, error) {
-	return nil, nil
-}
-
-func (r *residentialAppImpl) List() (*[]domain.Residential, error) {
+func (r *residentialAppImpl) List() (*[]mt_domain.Residential, error) {
 	return nil, nil
 }

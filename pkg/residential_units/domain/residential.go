@@ -5,6 +5,7 @@ import (
 )
 
 type ResidentialId string
+
 type WorkerId string
 
 type Worker struct {
@@ -19,8 +20,10 @@ type Residential struct {
 	workers []*Worker
 }
 
-func NewResidential(name string) *Residential {
-	return &Residential{Name: name}
+func NewResidential(name string, createdBy string) *Residential {
+	residential := &Residential{Name: name}
+	residential.CreatedBy = createdBy
+	return residential
 }
 
 func NewWorker(fn string, r string) *Worker {

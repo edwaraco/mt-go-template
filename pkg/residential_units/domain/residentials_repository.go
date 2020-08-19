@@ -1,6 +1,6 @@
 package domain
 
 type ResidentialRepository interface {
-	Add(r *Residential) (*Residential, error)
-	List() (*[]Residential, error)
+	Add(r *Residential) error
+	List() ([]Residential, error)
 }
