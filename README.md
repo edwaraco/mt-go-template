@@ -13,10 +13,14 @@ You will need:
 
 ## Acknowledgment
 This project was built using a [go-build-template](https://github.com/thockin/go-build-template)
-that allows us to use a Makefile to drive the build (the universal API to software projects)
-and a Dockerfile to build a docker image.
+that allows us to use a Makefile to drive the build (the universal
+API to software projects) and a Dockerfile to build a docker image.
 
 This has only been tested on Linux, and depends on Docker to build.
+
+Moreover, thanks so much to @marcusolsson for the great project done in this repo
+(see https://github.com/marcusolsson/goddd) and its articles
+(See https://github.com/marcusolsson/goddd#for-reading).
 
 ## Building
 
